@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require('assert');
 
 class ListNode {
@@ -257,45 +259,4 @@ class LinkedList {
     }
 }
 
-const l1 = LinkedList.of([1, 2, 3]);
-l1.pushFront(0);
-assert(l1.topFront() === 0, 'Первый элемент не равен 0');
-
-const l2 = LinkedList.of([1, 2, 3]);
-l2.popFront();
-assert(l2.topFront() === 2, 'Первый элемент не равен 2');
-
-const l3 = LinkedList.of([1, 2, 3]);
-l3.pushBack(4);
-assert(l3.topBack() === 4, 'Последний элемент не равен 4');
-
-const l4 = LinkedList.of([1, 2, 3]);
-l4.popBack();
-assert(l4.topBack() === 2, 'Последний элемент не равен 2');
-
-const l5 = LinkedList.of([1, 2, 3]);
-assert(l5.find(2), 'Элемент 2 есть в списке');
-
-const l6 = LinkedList.of([1, 2, 3]);
-l6.erase(2);
-assert(l6.toString() === 'LinkedList [1, 3]', 'Удаление не сработало корректно')
-
-const l7 = new LinkedList();
-assert(l7.empty(), 'Список не пуст');
-l7.pushFront(1);
-assert(l7.empty() === false, 'Список пуст');
-
-const l8 = LinkedList.of([1, 2, 3]);
-l8.insert(0, 4);
-l8.insert(2, 5);
-l8.insert(4, 6);
-assert(l8.toString() === 'LinkedList [4, 1, 5, 2, 6, 3]', 'Вставка по индексу не сработала корректно')
-
-const l9 = LinkedList.of([1, 2, 3]);
-assert(l9.nthFromEnd(0) === 3, '0-й элемент с конца не равен 3');
-assert(l9.nthFromEnd(1) === 2, '1-й элемент с конца не равен 2');
-assert(l9.nthFromEnd(2) === 1, '2-й элемент с конца не равен 1');
-
-const l10 = LinkedList.of([1, 2, 3, 4, 5]);
-l10.reverse();
-assert(l10.toString() === 'LinkedList [5, 4, 3, 2, 1]', 'Разворот списка не сработал');
+module.exports = LinkedList;

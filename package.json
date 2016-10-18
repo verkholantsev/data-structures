@@ -1,0 +1,22 @@
+{
+  "name": "data-structures",
+  "version": "0.0.1",
+  "description": "##TOC",
+  "main": "null",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verkholantsev/data-structures.git"
+  },
+  "author": "Aleksey Verkholantsev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/verkholantsev/data-structures/issues"
+  },
+  "homepage": "https://github.com/verkholantsev/data-structures#readme",
+  "dependencies": {
+    "mocha": "^3.1.2"
+  }
+}
