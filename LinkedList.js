@@ -181,9 +181,12 @@ class LinkedList {
     size() {
         let size = 0;
         let node = this.head;
+
         while (node !== null) {
             size += 1;
         }
+
+        return size;
     }
 
     /**
