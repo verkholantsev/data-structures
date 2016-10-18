@@ -232,6 +232,25 @@ class LinkedList {
      * Разворот списка
      */
     reverse() {
+        if (this.head === this.tail) {
+            return;
+        }
+
+        this.tail = this.head;
+        let node = this.head.next; // Итерирование со второго элемента
+        let prev = this.head;
+
+        while (node !== null) {
+            if (node.next === null) {
+                this.head = node;
+            }
+            var current = node;
+            node = node.next; // Сначала на следующий элемент
+            current.setNext(prev); // current -- текущий элемент
+            prev = current;
+        }
+
+        this.tail.setNext(null);
     }
 }
 
@@ -274,7 +293,6 @@ assert(l9.nthFromEnd(0) === 3, '0-й элемент с конца не раве�
 assert(l9.nthFromEnd(1) === 2, '1-й элемент с конца не равен 2');
 assert(l9.nthFromEnd(2) === 1, '2-й элемент с конца не равен 1');
 
-const l10 = LinkedList.of([1, 2, 3]);
+const l10 = LinkedList.of([1, 2, 3, 4, 5]);
 l10.reverse();
-console.log(l10);
-assert(l10.toString() === 'LinkedList [3, 2, 1]', 'Разворот списка не сработал');
+assert(l10.toString() === 'LinkedList [5, 4, 3, 2, 1]', 'Разворот списка не сработал');
