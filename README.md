@@ -39,50 +39,143 @@ HEAD
 1. Получение длины списка `size()`
 1. Добавление по индексу `insert(index, key)`
 
-###Времена некоторых операций
+###Реализации операций над списком
 
 ####pushFront(key)
 
-1. Создание элемента &mdash; O(1)
-1. Сохранение во вновь созданнный элемент ссылки на текущий HEAD &mdash; O(1)
-1. Запись в HEAD ссылки на новый элемент &mdash; O(1)
+```js
+/**
+ * Добавление элемента в начало O(1)
+ * @param {*} key
+ */
+pushFront(key) {
+    // Создание нового элемента O(1)
+    const newNode = new ListNode(key);
+
+    // Если список пуст -- присваивание head и tail ссылки на новый элемент O(1)
+    if (this.head === null && this.tail === null) {
+        this.head = newNode;
+        this.tail = newNode;
+        return;
+    }
+
+    // Выставление новому элементу указатель на текущий head O(1)
+    newNode.setNext(this.head);
+
+    // Присваивание head ссылки на новый элемент O(1)
+    this.head = newNode;
+}
+```
 
 ####key topFront()
 
-1. Возвращение HEAD &mdash; O(1)
+```js
+/**
+ * Получение первого элемента O(1)
+ * @returns {*}
+ */
+topFront() {
+    // Если список пуст -- ошибка O(1)
+    if (this.head === null) {
+        throw new Error('List is empty');
+    }
+
+    // Возврат значения первого элмемента O(1)
+    return this.head.key;
+}
+```
 
 ####popFront()
 
-1. Обновление HEAD на next у HEAD &mdash; O(1)
-1. Удаление бывшего HEAD &mdash; O(1)
+```js
+/**
+ * Удаление первого элемента O(1)
+ */
+popFront() {
+    // Если список пуст -- ошибка O(1)
+    if (this.head ===  null) {
+        throw new Error('List is empty');
+
+    // Если список состоит из одного элемнта -- сброс head и tail O(1)
+    } else if (this.head === this.tail) {
+        this.head = null;
+        this.tail = null;
+    }
+
+    // Присваивание в head ссылки на второй элемент O(1)
+    this.head = this.head.next;
+}
+```
 
 ####pushBack(key)/append
 
-Если нет указателя на последний элемент
+```js
+/**
+ * Добавление элемента в конец O(1)
+ */
+pushBack(key) {
+    // Создание нового элемента O(1)
+    const newNode = new ListNode(key);
 
-1. Нужно сделать N-1 итераций, чтобы найти предпоследний элемент &mdash; O(n)
-1. Обнулить указатель next у предпоследнего элемента &mdash; O(1)
-1. Удалить последний элемент &mdash; O(1)
+    // Если список пуст -- присваивание head и tail ссылки на новый элемент O(1)
+    if (this.tail === null && this.head === null) {
+        this.tail = newNode;
+        this.head = newNode;
+        return;
+    }
 
-Если есть указатель на последний элемент
+    // Добавление сслыки в текущий tail на новый элемент O(1)
+    this.tail.setNext(newNode);
 
-1. Создание нового элемента &mdash; O(1)
-1. Обновление next у TAIL на вновь созданный элемент &mdash; O(1)
-1. Обновление TAIL &mdash; O(1)
+    // Присываивание в tail ссылки на новый элемент O(1)
+    this.tail = newNode;
+}
+```
 
 ####key topBack()
 
-1. Вернуть TAIL &mdash; O(1)
+```js
+/**
+ * Получение последнего элемента O(1)
+ */
+topBack() {
+    // Если список пуст -- ошибка O(1)
+    if (this.tail === null) {
+        throw new Error('List is empty');
+    }
+
+    // Возврат значения последнего элмемента O(1)
+    return this.tail.key;
+}
+```
 
 ####popBack()
 
-1. Сделать N-1 итераций до предпоследнего элемента
-1. Обнулить next у предпоследнего элемента
-1. Освободить память от элемента, на который ссылается TAIL
-1. Обновить TAIL на предпоследний элемент
+```js
+/**
+ * Удаление последнего элемента O(n)
+ */
+popBack() {
+    // Если список пуст -- ошибка O(1)
+    if (this.head === null) {
+        throw new Error('List is empty');
 
-###Реализация связанного списка
+    // Если список состоит из одного элемнта -- сброс head и tail O(1)
+    } else if (this.head === this.tail) {
+        this.head = null;
+        this.tail = null;
+    }
 
-```
-#include(LinkedList);
+    // Итерирование по списке до предпоследнего элемента O(n)
+    let node = this.head;
+    while (node.next !== this.tail) {
+        node = node.next;
+    }
+
+    // Сброс указателя на последний элемент в предпоследнем O(1)
+    node.setNext(null);
+
+    // Присываивание в tail ссылки на предпоследний элемент O(1)
+    this.tail = node;
+}
 ```

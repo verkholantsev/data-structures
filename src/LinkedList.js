@@ -50,92 +50,116 @@ class LinkedList {
 
     /**
      * Добавление элемента в начало
-     *
      * @param {*} key
      */
     pushFront(key) {
+        // Создание нового элемента O(1)
         const newNode = new ListNode(key);
 
+        // Если список пуст -- присваивание head и tail ссылки на новый элемент O(1)
         if (this.head === null && this.tail === null) {
             this.head = newNode;
             this.tail = newNode;
             return;
         }
 
+        // Выставление новому элементу указатель на текущий head O(1)
         newNode.setNext(this.head);
+
+        // Присваивание head ссылки на новый элемент O(1)
         this.head = newNode;
     }
 
     /**
-     * Получение первого элемента
-     *
+     * Получение первого элемента O(1)
      * @returns {*}
      */
     topFront() {
+        // Если список пуст -- ошибка O(1)
         if (this.head === null) {
             throw new Error('List is empty');
         }
 
+        // Возврат значения первого элмемента O(1)
         return this.head.key;
     }
 
     /**
-     * Удаление первого элемента
+     * Удаление первого элемента O(1)
      */
     popFront() {
+        // Если список пуст -- ошибка O(1)
         if (this.head ===  null) {
             throw new Error('List is empty');
+
+        // Если список состоит из одного элемнта -- сброс head и tail O(1)
         } else if (this.head === this.tail) {
             this.head = null;
             this.tail = null;
         }
 
+        // Присваивание в head ссылки на второй элемент O(1)
         this.head = this.head.next;
     }
 
     /**
-     * Добавление элемента в конец
+     * Добавление элемента в конец O(1)
      */
     pushBack(key) {
+        // Создание нового элемента O(1)
         const newNode = new ListNode(key);
 
+        // Если список пуст -- присваивание head и tail ссылки на новый элемент O(1)
         if (this.tail === null && this.head === null) {
             this.tail = newNode;
             this.head = newNode;
             return;
         }
 
+        // Добавление сслыки в текущий tail на новый элемент O(1)
         this.tail.setNext(newNode);
+
+        // Присываивание в tail ссылки на новый элемент O(1)
         this.tail = newNode;
     }
 
     /**
-     * Получение последнего элемента
+     * Получение последнего элемента O(1)
      */
     topBack() {
+        // Если список пуст -- ошибка O(1)
         if (this.tail === null) {
             throw new Error('List is empty');
         }
 
+        // Возврат значения последнего элмемента O(1)
         return this.tail.key;
     }
 
     /**
-     * Удаление последнего элемента
+     * Удаление последнего элемента O(n)
      */
     popBack() {
+        // Если список пуст -- ошибка O(1)
         if (this.head === null) {
             throw new Error('List is empty');
+
+        // Если список состоит из одного элемнта -- сброс head и tail O(1)
         } else if (this.head === this.tail) {
             this.head = null;
             this.tail = null;
         }
 
+        // Итерирование по списке до предпоследнего элемента O(n)
         let node = this.head;
         while (node.next !== this.tail) {
             node = node.next;
         }
+
+        // Сброс указателя на последний элемент в предпоследнем O(1)
         node.setNext(null);
+
+        // Присываивание в tail ссылки на предпоследний элемент O(1)
         this.tail = node;
     }
 
