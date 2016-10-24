@@ -190,6 +190,15 @@ class LinkedList {
      */
     erase(key) {
         let node = this.head;
+
+        // Если список состоит из одного элемента и его ключ
+        // совпадает с тем, который надо удалить -- очистка head и tail O(1)
+        if (this.head === this.tail && this.head.key === key) {
+            this.head = null;
+            this.tail = null;
+            return;
+        }
+
         // Итерирование до тех пор, пока не будет найден нужный элемент 
         // В худшем случае -- O(n)
         while (node !== null) {
@@ -225,6 +234,7 @@ class LinkedList {
         // увеличивается на единицу O(n)
         while (node !== null) {
             size += 1;
+            node = node.next;
         }
 
         return size;
@@ -256,6 +266,21 @@ class LinkedList {
 
         // Присваивание указателя на новый элемент в текущем O(1)
         node.setNext(newNode);
+    }
+
+    /**
+     * Возрат элемента по индексу O(n)
+     * @todo Написать тест в ../test/LinkedList
+     * @returns {*}
+     */
+    nth(index) {
+        let node = this.head;
+
+        for (let i = 0; i < index; i++) {
+            node = node.next;
+        }
+
+        return node.key;
     }
 
     /**
