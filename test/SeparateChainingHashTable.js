@@ -37,7 +37,8 @@ describe('SeparateChainingHashTable', () => {
         });
 
         it('должен удалять элемент из хеш-таблицы', () => {
-            expect(table.toString()).to.be.eql('SeparateChainingHashTable {1: 1, 12: 12, 7: 7}');
+            expect(table.toString()).to.be.eql('SeparateChainingHashTable {}');
+        });
     });
 
     it('должен корректно добавлять элемент в случае коллизии', () => {

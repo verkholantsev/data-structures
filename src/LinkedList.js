@@ -1,7 +1,5 @@
 'use strict';
 
-const assert = require('assert');
-
 class ListNode {
     constructor(key) {
         this.key = key;
