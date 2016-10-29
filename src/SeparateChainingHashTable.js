@@ -30,6 +30,7 @@ class SeparateChainingHashTable {
 
         // Доступ к списку по индексу, либо создание нового O(1)
         this._array[hashCode] = this._array[hashCode] || new LinkedList();
+
         // Добавление элемента в конец списка O(1)
         this._array[hashCode].pushBack(key);
     }
