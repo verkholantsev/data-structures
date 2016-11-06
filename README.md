@@ -6,3 +6,5 @@
 2. [Стек](/docs/Stack.md)
 3. [Очередь](/docs/Queue.md)
 4. [Хеш-таблица](/docs/HashTable.md)
+5. [Дерево](/docs/Tree.md)
+  6. [Двоичное дерево поиска](/docs/BinarySearchTree.md)

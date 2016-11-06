@@ -6,3 +6,4 @@
 * [Очередь](docs/Queue.md)
 * [Хеш-таблица](/docs/HashTable.md)
 * [Дерево](/docs/Tree.md)
+  * [Двоичное дерево поиска](/docs/BinarySearchTree.md)
